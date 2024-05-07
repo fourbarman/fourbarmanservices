@@ -7,8 +7,12 @@
   <groupId>ru.fourbarman</groupId>
   <artifactId>fourbarmanservices</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>fourbarmanservices</name>
+  <modules>
+    <module>customer</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
