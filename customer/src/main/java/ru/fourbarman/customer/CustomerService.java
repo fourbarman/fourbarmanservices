@@ -3,7 +3,7 @@ package ru.fourbarman.customer;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerService {
+public record CustomerService(CustomerRepository customerRepository) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
@@ -12,6 +12,7 @@ public class CustomerService {
                 .build();
         //todo: check if email valid
         //todo: check if email not taken
-        //todo: store customer in db
+        System.out.println("save customer");
+        customerRepository.save(customer);
     }
 }
