@@ -1,4 +1,4 @@
-package ru.fourbarman.fraud;
+package ru.fourbarman.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients(
         basePackages = "ru.fourbarman.clients"
 )
-public class FraudApplication {
+public class NotificationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(FraudApplication.class, args);
+        SpringApplication.run(NotificationApplication.class, args);
     }
 }

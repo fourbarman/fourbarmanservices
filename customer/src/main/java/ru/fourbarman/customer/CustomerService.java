@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.fourbarman.clients.fraud.FraudCheckResponse;
 import ru.fourbarman.clients.fraud.FraudClient;
+import ru.fourbarman.clients.notification.NotificationClient;
+import ru.fourbarman.clients.notification.NotificationRequest;
 
 @Service
 @AllArgsConstructor
@@ -12,6 +14,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -30,6 +33,14 @@ public class CustomerService {
             throw new IllegalStateException("fraudster is not supported");
         }
 
-        //todo: send notification
+        //todo: make it async. i.e add to queue
+
+        notificationClient.sendNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hi %s, welcome to microoservices...", customer.getFirstName())
+                )
+        );
     }
 }
